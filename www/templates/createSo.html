@@ -1,0 +1,35 @@
+<ion-view>
+    <ion-header-bar class="bar-dark">
+            <h1 class="title">Cinder</h1>
+        </ion-header-bar>
+    <ion-content>
+<div class="list">
+ <label class="item item-input item-select">
+    <div class="input-label">
+      Customer
+    </div>
+    <select ng-model="createSo.customer_id" ng-options="customer.company_name for customer in customers track by customer.id"></select>
+  </label>
+   <label class="item item-input item-select">
+    <div class="input-label">
+      Type
+    </div>
+    <select ng-model="createSo.sales_order_type_id">
+      <option value="1">Delivery</option>
+      <option value="2" selected>Pick Up</option>
+    </select>
+  </label>
+    <label class="item item-input item-stacked-label">
+    <span class="input-label">Order Description</span>
+    <input type="text" placeholder="Add order description here" ng-model="createSo.sales_order_desc">
+  </label>
+    <label class="item item-input item-stacked-label">
+    <span class="input-label">Notes</span>
+    <input type="text" placeholder="Add notes here" ng-model="createSo.notes">
+  </label>
+</div>
+<button class="button button-block button-positive" ng-click="createSalesOrder(createSo)">
+  Create Sales Order
+</button>
+    </ion-content>
+</ion-view>

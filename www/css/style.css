@@ -1,0 +1,39 @@
+/* Empty. Add your own CSS if you like */
+.noWrap {
+  white-space: normal !important;
+}
+.ob-desc h2 {
+  font-size: 1.5rem;
+  padding: 0 5px 0 0;
+  margin-bottom: 15px;
+}
+
+ob-desc p {
+  padding: 10px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.isPrepared {
+  background-color: mediumspringgreen;
+}
+
+/*OB DETAIL PAGE*/
+
+
+
+.ob-detail-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ob-detail-header span {
+  font-size: 2rem;
+}
+
+.ob-detail-header i {
+  font-size: 1.9rem;
+}
+
