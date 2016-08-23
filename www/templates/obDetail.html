@@ -1,5 +1,6 @@
 <ion-view>
 <ion-header-bar class="bar-dark">
+<button class="button " ui-sref="home"><i class="ion-chevron-left"></i></button>    
     <h1 class="title">Cinder</h1>
     <button class="button">Edit</button>
 </ion-header-bar>
@@ -8,7 +9,10 @@
     <div class="item ob-detail-header" >
         <span>{{detailSo.id}}</span>  <span>{{detailSo.customer}}</span> <i class="icon" ng-class="{'fa fa-truck' : detailSo.type === 1, 'fa fa-building' : detailSo.type === 2}" aria-hidden="true"></i>
     </div>
-
+    <div class="item item-body item-icon-right">
+        <h2>Schedule date:</h2>
+        <p>{{detailSo.date}}
+    </div>
 
     <div class="item item-body item-icon-right">
         <h2>Order Description:</h2>

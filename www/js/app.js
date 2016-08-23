@@ -49,6 +49,12 @@ angular.module('cinder', ['ionic'])
     templateUrl: 'templates/createSo.html',
     controller: 'createSoCtrl'
   })
+   .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+  
 
 $urlRouterProvider.otherwise('/home');
 });

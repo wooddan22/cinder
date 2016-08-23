@@ -1,5 +1,5 @@
 angular.module('cinder')
-    .service('salesService', function($http, $rootScope){
+    .service('salesService', function($http, $rootScope, $filter){
         this.test = 'test';
 
 
@@ -9,6 +9,9 @@ angular.module('cinder')
         method: 'GET',
         url: 'http://localhost:3000/orders'
       }).then(function(response){
+        for (var i = 0; i < response.data.length; i++){
+          response.data[i].date = $filter('date')(response.data[i].date, "MM-dd-yyyy")
+        }
         // console.log(response.data);
         return response.data;
       })}
@@ -18,7 +21,8 @@ angular.module('cinder')
         method: 'GET',
         url: 'http://localhost:3000/orders/' + id
       }).then(function(response){
-        // console.log(response)
+        console.log(response)
+        response.data[0].date = $filter('date')(response.data[0].date, "MM-dd-yyyy")
         return response.data[0];
       })
     }
@@ -51,7 +55,8 @@ angular.module('cinder')
         data: {"sales_order_type_id": so.sales_order_type_id,
                "customer_id": so.customer_id.id,
                "sales_order_desc": so.sales_order_desc,
-               "notes": so.notes}
+               "notes": so.notes,
+               "schedule_date":so.date}
       }).then(function(response){
         $rootScope.$emit('obUpdated', response)
         return (response)
@@ -64,8 +69,8 @@ angular.module('cinder')
         method: "GET",
         url: "http://localhost:3000/customers/"
       }).then(function(response){
-        console.log("your are in getCustomers in the salesService");
-        console.log(response.data);
+        // console.log("your are in getCustomers in the salesService");
+        // console.log(response.data);
         return response.data;
       })
     }

@@ -1,17 +1,19 @@
 <ion-view>
-    <ion-content>
-        <ion-header-bar class="bar-dark">
+    <ion-header-bar class="bar-dark">
             <h1 class="title">Cinder</h1>
-            <button class="button" ui-sref="createSo"><i class="icon ion-plus"></i></button>
+            <button class="button " ui-sref="createSo"><i class="icon ion-plus"></i></button>
         </ion-header-bar>
-        <ion-list>
-            <div class="item item-divider center-text">
+    <ion-content>
+      <div class="item item-divider center-text">
                 Outbound Sales
             </div>
-            <div class="item item-icon-right ob-desc" ng-repeat="sale in salesOutbound | filter: filterFunction " ui-sref="obDetail({id:sale.id})" ng-class="{'isPrepared' : sale.status === 2}">
-            <!--<img ng-src="{{sale.img}}" alt="">-->
+        <ion-list>
+
+            
+            <div class="item item-icon-right ob-desc" ng-repeat="sale in salesOutbound | filter: filterFunction | orderBy: 'date' " ui-sref="obDetail({id:sale.id})" ng-class="{'isPrepared' : sale.status === 2}">
             <h2> {{sale.id}} {{sale.customer}} </h2>
              <p>{{sale.order_desc}}</p>
+             
              <p class="noWrap padding-vertical">{{sale.date}}</p>
             <i class="icon" ng-class="{'fa fa-truck' : sale.type === 1, 'fa fa-building' : sale.type === 2}" aria-hidden="true"></i>
               <!--<i class="icon ion-chevron-right icon-accessory" "></i>-->
@@ -20,7 +22,7 @@
              <div class="item item-divider center-text">
                 Purchase Orders
             </div>
-
+          
             </div>
                 <div class="item item-icon-right ob-desc" ng-repeat="po in purchaseOrders">
                 <h2>{{po.id}} {{po.customer}}  <i class="icon fa fa-train" aria-hidden="true"></i></h2>

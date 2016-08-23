@@ -1,10 +1,4 @@
-<ion-view>
-    <ion-header-bar class="bar-dark">
-      <button class="button " ui-sref="home"><i class="ion-chevron-left"></i></button>   
-            <h1 class="title">Cinder</h1>
-        </ion-header-bar>
-    <ion-content>
-<!--<div class="list">
+<div class="list">
  <label class="item item-input item-select">
     <div class="input-label">
       Customer
@@ -28,15 +22,12 @@
     <span class="input-label">Notes</span>
     <input type="text" placeholder="Add notes here" ng-model="createSo.notes">
   </label>
-  <label class="item item-input item-stacked-label">
-     <span ng-model="createSo.scheduled_date" class="input-label">Scheduled Date</span>
-    <input type="date" name="bday">
+  <label class="item item-input item-stacked-label soDatePicker">
+     <span  class="input-label">Scheduled Date</span>
+    <input ng-model="createSo.date" type="date">
     
   </label>
 </div>
 <button class="button button-block button-positive" ng-click="createSalesOrder(createSo)">
   Create Sales Order
-</button>-->
-<create-so></create-so>
-    </ion-content>
-</ion-view>
+</button>
