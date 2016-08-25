@@ -1,27 +1,22 @@
 angular.module('cinder')
     .controller('mainCtrl', function($scope, $stateParams, salesService, $state, $rootScope) {
-
+        var token = JSON.parse(localStorage.getItem('cinderJwt'));
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(currentUser);
+        console.log(token);
+        if (token === null) {
+            $state.go('login')
+        }
         $scope.salesOutbound;
-        $scope.getSalesOb = function(){
-        //    console.log('were in salesCtrl')
-            salesService.getSalesOutbound().then(function(response){
+        $scope.getSalesOb = function(token, user){
+            console.log(token, user)
+            salesService.getSalesOutbound(token, user).then(function(response){
                 $scope.salesOutbound = response;
-                // console.log($scope.salesOutbound);
-                $state.reload();
             })
         };
 
-        // $scope.createSalesOrder = function(so) {
-        //     console.log(so)
-        //     salesService.createSalesOrder(so).then(function(response){
-        //         console.log(response);
-        //         $state.go('home')
-        //     })
-        // }
-        
-
         $rootScope.$on('obUpdated', function(event, data) {
-            $scope.getSalesOb();
+            $scope.getSalesOb(token, currentUser[0].id);
         })
 
         $scope.purchaseOrders = salesService.purchaseOrders;
@@ -29,13 +24,14 @@ angular.module('cinder')
         $scope.filterFunction = function(value) {
             return value.status === 1 || value.status === 2;
          }
-        
-        $scope.getSalesOb();
-        
-       
-
-
-    }
+        $scope.getSalesOb(token, currentUser[0].id);
     
-    
-    )
+        $scope.logout = function(){
+            salesService.logout(token, currentUser[0].id).then(function(response){
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('cinderJwt')
+                $state.go('login');
+            })
+        }
+
+})

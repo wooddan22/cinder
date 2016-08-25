@@ -1,4 +1,5 @@
 angular.module('cinder').controller('createSoCtrl', function($scope, salesService, $state){
+
     // $scope.getCustomers = function(){
     //     salesService.getCustomers().then(function(response){
     //         // console.log(response);

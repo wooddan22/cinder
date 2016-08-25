@@ -1,5 +1,6 @@
 <ion-view>
     <ion-header-bar class="bar-dark">
+            <button class="button icon ion-navicon" ng-click='logout()'></button>
             <h1 class="title">Cinder</h1>
             <button class="button " ui-sref="createSo"><i class="icon ion-plus"></i></button>
         </ion-header-bar>
@@ -10,7 +11,7 @@
         <ion-list>
 
             
-            <div class="item item-icon-right ob-desc" ng-repeat="sale in salesOutbound | filter: filterFunction | orderBy: 'date' " ui-sref="obDetail({id:sale.id})" ng-class="{'isPrepared' : sale.status === 2}">
+            <div class="item item-icon-right ob-desc" ng-repeat="sale in salesOutbound | filter: filterFunction" ui-sref="obDetail({id:sale.id})" ng-class="{'isPrepared' : sale.status === 2}">
             <h2> {{sale.id}} {{sale.customer}} </h2>
              <p>{{sale.order_desc}}</p>
              
