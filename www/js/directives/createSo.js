@@ -19,7 +19,7 @@ return {
     },
     $scope.createSalesOrder = function(so) {
             console.log(so)
-            salesService.createSalesOrder(token, currentUser[0].id, so).then(function(response){
+            salesService.createSalesOrder(token, currentUser.id, so).then(function(response){
                 $state.go('home')
             })
         }

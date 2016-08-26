@@ -6,15 +6,18 @@
 
 <div class="card">
     <div class="item center-text"><b>Please log in to continue</b></div>
-    <div class="item item-text-wrap">
+    <div class="item">
         <div class="list">
   <label class="item item-input item-stacked-label">
-    <span class="input-label">email</span>
-    <input type="text" placeholder="username" ng-model="user.email">
+
+    <span class="input-label">email</span> <span class='email-popup animate-hide' ng-if="!emailVisible">email not found</span>
+
+    <input type="text" placeholder="enter email address here" ng-model="user.email"> 
+
   </label>
             <label class="item item-input item-stacked-label">
-     <span  class="input-label">Password</span>
-     <input type="password" placeholder="Enter password here" ng-model="user.password">  
+     <span  class="input-label">password</span><span class='password-popup' ng-if="!passwordVisible">password was incorrect</span>
+     <input type="password" placeholder="enter password here" ng-model="user.password">  
   </label>
         </div>
     </div>

@@ -1,35 +1,36 @@
 <ion-view>
     <ion-header-bar class="bar-dark">
-            <button class="button icon ion-navicon" ng-click='logout()'></button>
-            <h1 class="title">Cinder</h1>
-            <button class="button " ui-sref="createSo"><i class="icon ion-plus"></i></button>
-        </ion-header-bar>
+        <button class="button icon ion-navicon" ng-click='logout()'></button>
+        <h1 class="title">Cinder</h1>
+        <button class="button " ui-sref="createSo"><i class="icon ion-plus"></i></button>
+    </ion-header-bar>
     <ion-content>
-      <div class="item item-divider center-text">
-                Outbound Sales
-            </div>
+        <div class="item item-divider center-text">
+            Outbound Sales
+        </div>
         <ion-list>
 
-            
-            <div class="item item-icon-right ob-desc" ng-repeat="sale in salesOutbound | filter: filterFunction" ui-sref="obDetail({id:sale.id})" ng-class="{'isPrepared' : sale.status === 2}">
-            <h2> {{sale.id}} {{sale.customer}} </h2>
-             <p>{{sale.order_desc}}</p>
-             
-             <p class="noWrap padding-vertical">{{sale.date}}</p>
-            <i class="icon" ng-class="{'fa fa-truck' : sale.type === 1, 'fa fa-building' : sale.type === 2}" aria-hidden="true"></i>
-              <!--<i class="icon ion-chevron-right icon-accessory" "></i>-->
-             </div>
 
-             <div class="item item-divider center-text">
+            <div class="item item-icon-right ob-desc" ng-repeat="sale in salesOutbound | filter: filterFunction" ui-sref="obDetail({id:sale.id})"
+                ng-class="{'isPrepared' : sale.status === 2}">
+                <h2> {{sale.id}} {{sale.customer}} </h2>
+                <p>{{sale.order_desc}}</p>
+
+                <p class="noWrap padding-vertical">{{sale.date}}</p>
+                <i class="icon" ng-class="{'fa fa-truck' : sale.type === 1, 'fa fa-building' : sale.type === 2}" aria-hidden="true"></i>
+                <!--<i class="icon ion-chevron-right icon-accessory" "></i>-->
+            </div>
+
+            <!--<div class="item item-divider center-text">
                 Purchase Orders
             </div>
-          
-            </div>
-                <div class="item item-icon-right ob-desc" ng-repeat="po in purchaseOrders">
-                <h2>{{po.id}} {{po.customer}}  <i class="icon fa fa-train" aria-hidden="true"></i></h2>
+
+        
+            <div class="item item-icon-right ob-desc" ng-repeat="po in purchaseOrders">
+                <h2>{{po.id}} {{po.customer}} <i class="icon fa fa-train" aria-hidden="true"></i></h2>
                 <p>{{po.order_desc}}</p>
                 <p class="noWrap padding-vertical">{{po.order_date}}</p>
-            </div>
+            </div>-->
         </ion-list>
     </ion-content>
 </ion-view>

@@ -31,11 +31,13 @@ angular.module('cinder', ['ionic'])
   $stateProvider
 
     .state('home', {
+    cache: false,
     url: '/home',
     templateUrl: 'templates/home.html',
     controller: 'mainCtrl'
   })
   .state('obDetail', {
+    cache: false,
     url: '/obDetail/:id',
     templateUrl: 'templates/obDetail.html',
     controller: 'obCtrl'

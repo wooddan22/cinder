@@ -1,16 +1,15 @@
 angular.module('cinder')
-    .service('salesService', function($http, $rootScope, $filter){
+    .service('salesService', function($http, $filter){
         this.test = 'test';
 
     var token = JSON.parse(localStorage.getItem('cinderJwt'));
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    console.log("Current User in svc")
-    console.log(currentUser)
+
 
 
     this.getSalesOutbound = function(token, currentUserId){
-      console.log(token, currentUserId)
+      // console.log(token, currentUserId)
       return $http({
         method: 'GET',
         url: 'http://localhost:3000/orders/?token=' + token + '&currentUserId=' + currentUserId
@@ -38,7 +37,6 @@ angular.module('cinder')
         method: 'PUT',
         url: 'http://localhost:3000/orders/' + id + '?token=' + token + '&currentUserId=' + user
       }).then(function(response){
-        $rootScope.$emit('obUpdated', response)
        return ('Success!')
       })
     }
@@ -49,7 +47,6 @@ angular.module('cinder')
         method: 'PUT',
         url: 'http://localhost:3000/orders/complete/' + id + '?token=' + token + '&currentUserId=' + user
       }).then(function(response){
-        $rootScope.$emit('obUpdated', response)
        return ('Success!')
       })
     }
@@ -63,7 +60,7 @@ angular.module('cinder')
                "notes": so.notes,
                "schedule_date":so.date}
       }).then(function(response){
-        $rootScope.$emit('obUpdated', response)
+        // $rootScope.$emit('obUpdated', response)
         return (response)
       })
     }
@@ -80,13 +77,29 @@ angular.module('cinder')
       })
     }
 
-    this.logout = function(token, user){
+    this.logout = function(){
       return $http({
         method: 'POST',
-        url: 'http://localhost:3000/auth/logout?id=' + user
+        url: 'http://localhost:3000/auth/logout'
       })
     }
 
+    this.editOb = function(so){
+      return $http({
+        method: "PUT",
+        url: 'http://localhost:3000/ob',
+        data: {
+    "type": so.sales_order_type_id,
+    "desc": so.sales_order_desc,
+    "notes": so.notes,
+    "schedule_date": so.date,
+    "id": so.id
+}
+      }).then(function(response){
+        console.log(response);
+        return response;
+      })
+    }
 
   this.purchaseOrders = [{
     id: 1,

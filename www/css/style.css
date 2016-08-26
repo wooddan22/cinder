@@ -37,3 +37,24 @@ ob-desc p {
   font-size: 1.9rem;
 }
 
+/* Login Page */
+
+.animate-hide {
+  transition: all linear 0.5s;
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  background: white;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.email-popup {
+  color: red;
+}
+.password-popup {
+  color: red;
+}

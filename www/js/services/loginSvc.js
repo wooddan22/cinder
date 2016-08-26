@@ -5,6 +5,7 @@ angular.module('cinder').service('loginSvc', function($http){
             url: "http://localhost:3000/auth/login",
             data: user
         }).then(function(response){
+            console.log(response.data)
             return response.data;
         })
     }
