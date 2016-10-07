@@ -10,9 +10,10 @@ return {
         if (token === null) {
             $state.go('login')
         }
-            $scope.getCustomers = function(){
+        $scope.getCustomers = function(){
+        console.log("you are in getCustomers")
         salesService.getCustomers().then(function(response){
-            // console.log(response);
+            console.log('you are in getCustomers callback');
             $scope.customers = response;
             // console.log($scope.customers)
         });

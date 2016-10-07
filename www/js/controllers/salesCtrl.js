@@ -9,7 +9,7 @@ angular.module('cinder')
         }
         $scope.salesOutbound;
         $scope.getSalesOb = function(token, user){
-            console.log(token, user)
+            // console.log(token, user)
             salesService.getSalesOutbound(token, user).then(function(response){
                 $scope.salesOutbound = response;
             })

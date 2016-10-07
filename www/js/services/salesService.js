@@ -16,7 +16,7 @@ angular.module('cinder')
         method: 'GET',
         url: 'http://localhost:3000/orders/?token=' + token + '&currentUserId=' + currentUserId
       }).then(function(response){
-        console.log(response);
+        // console.log(response);
         for (var i = 0; i < response.data.length; i++){
           response.data[i].date = $filter('date')(response.data[i].date, "MM-dd-yyyy")
         }
@@ -28,14 +28,14 @@ angular.module('cinder')
         method: 'GET',
         url: 'http://localhost:3000/orders/' + id + '?token=' + token + '&currentUserId=' + user
       }).then(function(response){
-        console.log(response)
+        // console.log(response)
         response.data[0].date = $filter('date')(response.data[0].date, "MM-dd-yyyy")
         return response.data[0];
       })
     }
 
     this.getHistoryById = function(id){
-      console.log('this is the id in the svc getHistoryById', id);
+      // console.log('this is the id in the svc getHistoryById', id);
       return $http({
         method: 'GET',
         url: baseUrl + 'orders/history/' + id
@@ -54,6 +54,7 @@ angular.module('cinder')
         method: 'PUT',
         url: 'http://localhost:3000/orders/' + id + '?token=' + token + '&currentUserId=' + user
       }).then(function(response){
+        console.log('response from updateSalesOrderById', response)
        return response;
       })
     }
@@ -88,8 +89,7 @@ angular.module('cinder')
         method: "GET",
         url: "http://localhost:3000/customers/"
       }).then(function(response){
-        // console.log("your are in getCustomers in the salesService");
-        // console.log(response.data);
+        // console.log("your are in getCustomers callback in salesService", response.data);
         return response.data;
       })
     }
@@ -113,7 +113,7 @@ angular.module('cinder')
     "id": so.id
 }
       }).then(function(response){
-        console.log(response);
+        // console.log(response);
         return response;
       })
     }

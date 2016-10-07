@@ -43,16 +43,19 @@ angular.module('cinder', ['ionic'])
     controller: 'obCtrl'
   })
    .state('createSo', {
+    cache: false,
     url: '/createSo',
     templateUrl: 'templates/createSo.html',
     controller: 'createSoCtrl'
   })
    .state('login', {
+    cache: false,
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
     .state('purchase', {
+    cache: false,
     url: '/purchase',
     templateUrl: 'templates/purchase.html',
     controller: 'purchaseCtrl'
