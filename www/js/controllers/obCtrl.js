@@ -1,25 +1,35 @@
-angular.module('cinder').controller('obCtrl', function($scope, $stateParams, salesService, $state, $ionicModal){
+angular.module('cinder').controller('obCtrl', function($scope, $stateParams, salesService, $state, $ionicModal, $ionicPopup){
     var token = JSON.parse(localStorage.getItem('cinderJwt'));
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(token === null){
         $state.go('login')
     }
 $scope.obId = Number($stateParams.id);
-$scope.detailSo;       
+$scope.detailSo;   
+$scope.showHistory = false;    
 
 
-$scope.obById = function(id){
+
+$scope.obById = function(){
     salesService.getSalesOrderById(token, currentUser.id, $scope.obId).then(function(response){
-        console.log(token, currentUser, id)
+        console.log("obById response", response)
         $scope.detailSo = response;
         // console.log($scope.detailSo);
     })
 }
 
-$scope.prep = function(id) {
-     salesService.updateSalesOrderById(token, currentUser.id, id).then(function(response){
+$scope.prep = function(id, sales_order_status) {
+    if(sales_order_status === 2){
+        $scope.showAlert();
+    }
+    else{
+        salesService.updateSalesOrderById(token, currentUser.id, id).then(function(response){
+         console.log('You are in the callback', response)
          $state.go('home');
      })
+    }
+
+     
 }
 
 $scope.complete = function(id) {
@@ -49,6 +59,27 @@ $scope.editOb = function(so){
     })
 } 
 
+$scope.displayHistory = function(){
+    salesService.getHistoryById($scope.obId).then(function(response){
+        $scope.orderHistory = response;
+        $scope.showHistory = true;
+    })
+}
+/////////////////
+///POPUP STUFF///
+/////////////////
+
+ $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Please check the order status',
+     template: 'This order has already been marked as prepared!'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Suh dan');
+   });
+ }
+ 
  $ionicModal.fromTemplateUrl('../templates/obEdit.html', {
     scope: $scope,
     animation: 'slide-in-up'

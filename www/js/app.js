@@ -52,7 +52,12 @@ angular.module('cinder', ['ionic'])
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
-  
+    .state('purchase', {
+    url: '/purchase',
+    templateUrl: 'templates/purchase.html',
+    controller: 'purchaseCtrl'
+  })
+ 
 $urlRouterProvider.otherwise('/login');
 })
 

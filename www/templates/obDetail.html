@@ -24,7 +24,24 @@
                 <p>{{detailSo.notes}}</p>
             </div>
         </div>
-        <button class="button button-block button-balanced" ng-click="prep(detailSo.id)">
+
+<button ng-if="!showHistory" ng-click="displayHistory()" class="button button-block button-dark">Show History</button>
+
+<ul class="list" ng-if="showHistory">
+      <div class="item item-divider center-text" >
+    Order History
+  </div>
+    <li class="item item-text-wrap" ng-repeat="event in orderHistory">
+        <div class="bold">{{event.event_timestamp}}</div>
+        {{event.name}} {{event.description}} 
+    </li>
+
+</ul>
+        
+
+
+
+        <button class="button button-block button-balanced" ng-click="prep(detailSo.id, detailSo.sales_order_status)">
                 Mark As Prepared
             </button>
         <button class="button button-block button-positive" ng-click="complete(detailSo.id)">

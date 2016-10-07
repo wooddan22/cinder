@@ -16,6 +16,10 @@ ob-desc p {
   text-align: center;
 }
 
+.bold {
+  font-weight: 900
+}
+
 .isPrepared {
   background-color: mediumspringgreen;
 }

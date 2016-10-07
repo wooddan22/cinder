@@ -20,18 +20,15 @@
                 <i class="icon" ng-class="{'fa fa-truck' : sale.type === 1, 'fa fa-building' : sale.type === 2}" aria-hidden="true"></i>
                 <!--<i class="icon ion-chevron-right icon-accessory" "></i>-->
             </div>
-
-            <!--<div class="item item-divider center-text">
-                Purchase Orders
-            </div>
-
-        
-            <div class="item item-icon-right ob-desc" ng-repeat="po in purchaseOrders">
-                <h2>{{po.id}} {{po.customer}} <i class="icon fa fa-train" aria-hidden="true"></i></h2>
-                <p>{{po.order_desc}}</p>
-                <p class="noWrap padding-vertical">{{po.order_date}}</p>
-            </div>-->
         </ion-list>
     </ion-content>
+    <div class="tabs" >
+  <a class="tab-item" ui-sref="home">
+    Sales
+  </a>
+  <a class="tab-item" ui-sref="purchase">
+    Purchase Orders
+  </a>
+</div>
 </ion-view>
 

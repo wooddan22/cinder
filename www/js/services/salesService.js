@@ -2,9 +2,11 @@ angular.module('cinder')
     .service('salesService', function($http, $filter){
         this.test = 'test';
 
+    var baseUrl = 'http://localhost:3000/'
+
     var token = JSON.parse(localStorage.getItem('cinderJwt'));
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+    
 
 
 
@@ -32,12 +34,27 @@ angular.module('cinder')
       })
     }
 
+    this.getHistoryById = function(id){
+      console.log('this is the id in the svc getHistoryById', id);
+      return $http({
+        method: 'GET',
+        url: baseUrl + 'orders/history/' + id
+      }).then(function(response){
+    for (var i = 0; i < response.data.body.length; i ++) {
+      var tt = new Date(response.data.body[i].event_timestamp);
+      response.data.body[i].event_timestamp = tt.getMonth() + "/" + tt.getDate() + "/" + tt.getDay() + " " + tt.getHours() + ":" + tt.getMinutes() + ":" + tt.getSeconds();
+    }
+
+        return response.data.body
+      })
+    }
+
     this.updateSalesOrderById = function(token, user, id){
       return $http({
         method: 'PUT',
         url: 'http://localhost:3000/orders/' + id + '?token=' + token + '&currentUserId=' + user
       }).then(function(response){
-       return ('Success!')
+       return response;
       })
     }
 
@@ -101,19 +118,7 @@ angular.module('cinder')
       })
     }
 
-  this.purchaseOrders = [{
-    id: 1,
-    customer: 'Delta Steel',
-    img: '../img/deltaSteel.jpeg',
-    order_date: 'TODAY',
-    order_desc: 'Rail Car Coal Slag',
-  }, {
-    id: 2,
-    customer: 'Little Steel',
-    img: 'img/steel4.jpeg',
-    order_date: '2017-9-2',
-    order_desc: 'Rail Car Steel Shot',
-  }];
+
 
   
     })//this is the end
