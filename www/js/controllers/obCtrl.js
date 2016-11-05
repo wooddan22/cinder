@@ -65,6 +65,10 @@ $scope.displayHistory = function(){
         $scope.showHistory = true;
     })
 }
+
+$scope.hideHistory = function(){
+    $scope.showHistory = false;
+}
 /////////////////
 ///POPUP STUFF///
 /////////////////
@@ -80,7 +84,7 @@ $scope.displayHistory = function(){
    });
  }
  
- $ionicModal.fromTemplateUrl('../templates/obEdit.html', {
+ $ionicModal.fromTemplateUrl('./templates/obEdit.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {

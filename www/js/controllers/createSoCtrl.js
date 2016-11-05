@@ -1,4 +1,4 @@
-angular.module('cinder').controller('createSoCtrl', function($scope, salesService, $state){
+angular.module('cinder').controller('createSoCtrl', function($scope, salesService, $state, $ionicPopup){
         var token = localStorage.getItem('cinderJwt');
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         console.log(token)
@@ -16,10 +16,24 @@ angular.module('cinder').controller('createSoCtrl', function($scope, salesServic
     $scope.createSalesOrder = function(so) {
             console.log(so)
             salesService.createSalesOrder(token, currentUser.id, so).then(function(response){
-                console.log('you are in createSalesOrder callback in ctrl', response)
-                $state.go('home')
+                if(response.body !== null && response.code === 101){
+                    $scope.showAlert(response);
+                }
+                
             })
         }
+
+        $scope.showAlert = function (response) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Success!',
+                template: 'Sales Order ' + response.body + ' has been created successfully.'
+            });
+
+            alertPopup.then(function () {
+                    $state.go('home')
+            });
+        }    
+
     $scope.createSo;
     $scope.getCustomers();
 })

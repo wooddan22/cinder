@@ -13,7 +13,7 @@ ob-desc p {
 }
 
 .center-text {
-  text-align: center;
+  text-align: center !important;
 }
 
 .bold {

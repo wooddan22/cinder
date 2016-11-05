@@ -60,6 +60,18 @@ angular.module('cinder', ['ionic'])
     templateUrl: 'templates/purchase.html',
     controller: 'purchaseCtrl'
   })
+  .state('customers', {
+    cache: false,
+    url: '/customers',
+    templateUrl: 'templates/customers.html',
+    controller: 'customerCtrl'
+  })
+  .state('createCustomer',{
+    cache: false,
+    url: '/createCustomer',
+    templateUrl: 'templates/createCustomer.html',
+    controller: 'customerCtrl'
+  })
  
 $urlRouterProvider.otherwise('/login');
 })

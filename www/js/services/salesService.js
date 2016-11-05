@@ -42,7 +42,19 @@ angular.module('cinder')
       }).then(function(response){
     for (var i = 0; i < response.data.body.length; i ++) {
       var tt = new Date(response.data.body[i].event_timestamp);
-      response.data.body[i].event_timestamp = tt.getMonth() + "/" + tt.getDate() + "/" + tt.getDay() + " " + tt.getHours() + ":" + tt.getMinutes() + ":" + tt.getSeconds();
+      if (tt.getMinutes().toString().length === 1) {
+        var minutes = "0" + tt.getMinutes();
+      }
+      else {
+        var minutes = tt.getMinutes();
+      }
+      if (tt.getSeconds().toString().length === 1) {
+        var seconds = "0" + tt.getSeconds();
+      }
+      else {
+        var seconds = tt.getSeconds();
+      }
+      response.data.body[i].event_timestamp = (tt.getMonth() + 1) + "/" + tt.getDate() + "/" + tt.getFullYear() + " " + tt.getHours() + ":" + minutes + ":" + seconds;
     }
 
         return response.data.body
@@ -79,7 +91,7 @@ angular.module('cinder')
                "schedule_date":so.date}
       }).then(function(response){
         // $rootScope.$emit('obUpdated', response)
-        return (response)
+        return (response.data)
       })
     }
 
@@ -89,7 +101,7 @@ angular.module('cinder')
         method: "GET",
         url: "http://localhost:3000/customers/"
       }).then(function(response){
-        // console.log("your are in getCustomers callback in salesService", response.data);
+        console.log("your are in getCustomers callback in salesService", response.data);
         return response.data;
       })
     }
@@ -114,6 +126,16 @@ angular.module('cinder')
 }
       }).then(function(response){
         // console.log(response);
+        return response;
+      })
+    }
+
+    this.createCustomer = function(customer){
+      return $http({
+        method: "POST",
+        url: baseUrl + "customers",
+        data: customer
+      }).then(function(response){
         return response;
       })
     }

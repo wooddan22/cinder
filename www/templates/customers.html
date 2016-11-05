@@ -1,0 +1,24 @@
+<ion-view>
+
+    <ion-header-bar class="bar-dark">
+        <button class="button" ui-sref="home"><i class="ion-chevron-left"></i></button>
+        <h1 class="title center-text">Cinder</h1>
+        <button class="button " ui-sref="createCustomer"><i class="icon ion-plus"></i></button>
+    </ion-header-bar>
+   <ion-content> 
+<ion-list>
+
+
+<ion-item ng-repeat="customer in customers">
+    <h2>{{customer.company_name}}</h2>
+    <div>{{customer.phone}}</div>
+
+</ion-item>
+        
+</ion-list>
+
+</ion-content>
+
+
+
+</ion-view>

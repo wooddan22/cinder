@@ -1,7 +1,7 @@
 <ion-view>
     <ion-header-bar class="bar-dark">
         <button class="button" ui-sref="home"><i class="ion-chevron-left"></i></button>
-        <h1 class="title">Cinder</h1>
+        <h1 class="title center-text">Cinder</h1>
         <button class="button" ng-click="openModal()">Edit</button>
     </ion-header-bar>
     <ion-content>
@@ -26,10 +26,11 @@
         </div>
 
 <button ng-if="!showHistory" ng-click="displayHistory()" class="button button-block button-dark">Show History</button>
+<button ng-if="showHistory" ng-click="hideHistory()" class="button button-block button-dark">Hide History</button>
 
 <ul class="list" ng-if="showHistory">
       <div class="item item-divider center-text" >
-    Order History
+ Order History
   </div>
     <li class="item item-text-wrap" ng-repeat="event in orderHistory">
         <div class="bold">{{event.event_timestamp}}</div>
