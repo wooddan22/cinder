@@ -9,6 +9,15 @@ angular.module('cinder')
     
 
 
+    this.cancelOrder = function(token, currentUser, obId){
+      return $http({
+        method: 'POST',
+        url: baseUrl + 'orders/cancel/' + obId,
+        data: currentUser
+      }).then(function(response){
+        return response.data;
+      })
+    }
 
     this.getSalesOutbound = function(token, currentUserId){
       // console.log(token, currentUserId)
@@ -62,9 +71,11 @@ angular.module('cinder')
     }
 
     this.updateSalesOrderById = function(token, user, id){
+      console.log('this is user in updateSalesOrderById', user);
       return $http({
         method: 'PUT',
-        url: 'http://localhost:3000/orders/' + id + '?token=' + token + '&currentUserId=' + user
+        url: 'http://localhost:3000/orders/' + id + '?token=' + token + '&currentUserId=' + user.id,
+        data: user
       }).then(function(response){
         console.log('response from updateSalesOrderById', response)
        return response;
@@ -75,7 +86,8 @@ angular.module('cinder')
       // console.log('completeSalesOrderById is hitting with id : ' + id)
       return $http({
         method: 'PUT',
-        url: 'http://localhost:3000/orders/complete/' + id + '?token=' + token + '&currentUserId=' + user
+        url: 'http://localhost:3000/orders/complete/' + id + '?token=' + token + '&currentUserId=' + user.id,
+        data: user
       }).then(function(response){
        return ('Success!')
       })
@@ -83,12 +95,15 @@ angular.module('cinder')
     this.createSalesOrder = function(token, user, so){
       return $http({
         method: 'POST',
-        url: 'http://localhost:3000/orders?token=' + token + '&currentUserId=' + user,
-        data: {"sales_order_type_id": so.sales_order_type_id,
+        url: 'http://localhost:3000/orders?token=' + token + '&currentUserId=' + user.id,
+        data: {
+               "sales_order_type_id": so.sales_order_type_id,
                "customer_id": so.customer_id.id,
                "sales_order_desc": so.sales_order_desc,
                "notes": so.notes,
-               "schedule_date":so.date}
+               "schedule_date":so.date,
+               "user": user
+              }
       }).then(function(response){
         // $rootScope.$emit('obUpdated', response)
         return (response.data)
@@ -101,7 +116,7 @@ angular.module('cinder')
         method: "GET",
         url: "http://localhost:3000/customers/"
       }).then(function(response){
-        console.log("your are in getCustomers callback in salesService", response.data);
+        // console.log("your are in getCustomers callback in salesService", response.data);
         return response.data;
       })
     }

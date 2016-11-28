@@ -15,7 +15,7 @@ angular.module('cinder').controller('createSoCtrl', function($scope, salesServic
     },
     $scope.createSalesOrder = function(so) {
             console.log(so)
-            salesService.createSalesOrder(token, currentUser.id, so).then(function(response){
+            salesService.createSalesOrder(token, currentUser, so).then(function(response){
                 if(response.body !== null && response.code === 101){
                     $scope.showAlert(response);
                 }

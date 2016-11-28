@@ -21,7 +21,7 @@ ob-desc p {
 }
 
 .isPrepared {
-  background-color: mediumspringgreen;
+  background-color: #33CD5F;
 }
 
 /*OB DETAIL PAGE*/
@@ -34,7 +34,7 @@ ob-desc p {
 }
 
 .ob-detail-header span {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .ob-detail-header i {

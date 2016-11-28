@@ -6,9 +6,14 @@ angular.module('cinder').controller('obCtrl', function($scope, $stateParams, sal
     }
 $scope.obId = Number($stateParams.id);
 $scope.detailSo;   
-$scope.showHistory = false;    
+$scope.showHistory = false;  
+$scope.token = token;
+$scope.currentUser = currentUser 
 
-
+$scope.cancelOrder = function(obId, token, currentUser){
+    console.log('You are in cancelOrder')
+    $scope.showAlertCancel($scope.token, $scope.currentUser, $scope.obId);
+}
 
 $scope.obById = function(){
     salesService.getSalesOrderById(token, currentUser.id, $scope.obId).then(function(response){
@@ -18,12 +23,12 @@ $scope.obById = function(){
     })
 }
 
-$scope.prep = function(id, sales_order_status) {
-    if(sales_order_status === 2){
+$scope.prep = function(detailSo) {
+    if(detailSo.sales_order_status === 2){
         $scope.showAlert();
     }
     else{
-        salesService.updateSalesOrderById(token, currentUser.id, id).then(function(response){
+        salesService.updateSalesOrderById(token, currentUser, detailSo.id).then(function(response){
          console.log('You are in the callback', response)
          $state.go('home');
      })
@@ -33,7 +38,7 @@ $scope.prep = function(id, sales_order_status) {
 }
 
 $scope.complete = function(id) {
-    salesService.completeSalesOrderById(token, currentUser.id, id).then(function(response){
+    salesService.completeSalesOrderById(token, currentUser, id).then(function(response){
         // console.log("You are back in the $scope.complete function in the obCtrl")
         $state.go('home');
     })
@@ -84,6 +89,27 @@ $scope.hideHistory = function(){
    });
  }
  
+ $scope.showAlertCancel = function(token, currentUser, obId) {
+   console.log('token :', token, 'currentUser : ', currentUser, 'obId', obId)
+   var alertPopup = $ionicPopup.confirm({
+     title: 'Please Confirm',
+     template: 'Are you sure that you want to cancel this order?'
+   });
+
+   alertPopup.then(function(res) {
+     if(res){
+         salesService.cancelOrder(token, currentUser, obId).then(function(response){
+             console.log('You made it back bitch!')
+             $state.go('home')
+         })
+     }
+     else {
+         console.log('yolo')
+     }
+   });
+ }
+
+
  $ionicModal.fromTemplateUrl('./templates/obEdit.html', {
     scope: $scope,
     animation: 'slide-in-up'

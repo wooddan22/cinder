@@ -42,11 +42,14 @@
 
 
 
-        <button class="button button-block button-balanced" ng-click="prep(detailSo.id, detailSo.sales_order_status)">
+        <button class="button button-block button-balanced" ng-click="prep(detailSo)">
                 Mark As Prepared
             </button>
         <button class="button button-block button-positive" ng-click="complete(detailSo.id)">
                 Complete
+            </button>
+                <button class="button button-block button-assertive" ng-click="cancelOrder()">
+                Cancel Order
             </button>
     </ion-content>
 </ion-view>
